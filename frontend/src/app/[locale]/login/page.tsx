@@ -47,7 +47,7 @@ function LoginForm() {
       footer={
         <>
           {t("noAccount")}{" "}
-          <Link href="/register" className="font-medium text-teal hover:underline">
+          <Link href="/register" className="font-medium text-accent-400 hover:underline">
             {t("signUp")}
           </Link>
         </>

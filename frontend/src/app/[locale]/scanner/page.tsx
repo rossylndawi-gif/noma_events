@@ -35,12 +35,12 @@ function ScannerInner() {
   const [history, setHistory] = useState<ScanResponse[]>([]);
 
   const RESULT_STYLES: Record<ScanResponse["result"], { bg: string; label: string; icon: React.ComponentType<{ className?: string }> }> = {
-    VALID: { bg: "bg-success", label: t("resultValid"), icon: CheckCircle2 },
-    ALREADY_USED: { bg: "bg-warning", label: t("resultAlreadyUsed"), icon: Clock },
-    INVALID: { bg: "bg-danger", label: t("resultInvalid"), icon: XCircle },
-    WRONG_EVENT: { bg: "bg-gold-dark", label: t("resultWrongEvent"), icon: Shuffle },
-    CANCELLED: { bg: "bg-ink", label: t("resultCancelled"), icon: Ban },
-    REFUNDED: { bg: "bg-ink/70", label: t("resultRefunded"), icon: RotateCcw },
+    VALID: { bg: "border-success/50 bg-success-soft text-success", label: t("resultValid"), icon: CheckCircle2 },
+    ALREADY_USED: { bg: "border-warning/50 bg-warning-soft text-warning", label: t("resultAlreadyUsed"), icon: Clock },
+    INVALID: { bg: "border-danger/50 bg-danger-soft text-danger", label: t("resultInvalid"), icon: XCircle },
+    WRONG_EVENT: { bg: "border-warning/50 bg-warning-soft text-warning", label: t("resultWrongEvent"), icon: Shuffle },
+    CANCELLED: { bg: "border-line-card bg-sand text-ink", label: t("resultCancelled"), icon: Ban },
+    REFUNDED: { bg: "border-line-card bg-sand text-ink/80", label: t("resultRefunded"), icon: RotateCcw },
   };
 
   const { data: events, isLoading } = useQuery({
@@ -104,14 +104,14 @@ function ScannerInner() {
               </div>
 
               {lastResult && (
-                <div className={cn("mt-4 flex flex-col items-center gap-2 rounded-card p-6 text-center text-white", RESULT_STYLES[lastResult.result].bg)}>
+                <div className={cn("mt-4 flex flex-col items-center gap-2 rounded-card border p-6 text-center", RESULT_STYLES[lastResult.result].bg)}>
                   {(() => {
                     const Icon = RESULT_STYLES[lastResult.result].icon;
                     return <Icon className="h-10 w-10" />;
                   })()}
                   <p className="font-display text-2xl font-bold">{RESULT_STYLES[lastResult.result].label}</p>
                   {lastResult.ticket && (
-                    <p className="text-sm text-white/90">
+                    <p className="text-sm text-ink/80">
                       {lastResult.ticket.attendeeName} · {lastResult.ticket.ticketTypeName}
                     </p>
                   )}

@@ -17,7 +17,7 @@ export function TabsTrigger({ children, className, ...props }: React.ComponentPr
   return (
     <RadixTabs.Trigger
       className={cn(
-        "focus-ring -mb-px whitespace-nowrap border-b-2 border-transparent px-3.5 py-3 text-sm font-medium text-ink/55 transition-colors hover:text-ink data-[state=active]:border-teal data-[state=active]:text-ink",
+        "focus-ring -mb-px whitespace-nowrap border-b-2 border-transparent px-3.5 py-3 text-sm font-medium text-ink/55 transition-colors hover:text-ink data-[state=active]:border-accent-500 data-[state=active]:text-ink",
         className,
       )}
       {...props}

@@ -37,7 +37,7 @@ export function LocaleSwitcher({ variant = "desktop" }: { variant?: "desktop" | 
               onClick={() => switchTo(l)}
               className={cn(
                 "focus-ring rounded-full px-2.5 py-1 text-xs font-medium",
-                l === locale ? "bg-ink text-white" : "bg-ink/8 text-ink/60 hover:bg-ink/15",
+                l === locale ? "bg-ink text-ivory" : "bg-ink/8 text-ink/60 hover:bg-ink/15",
               )}
             >
               {l.toUpperCase()}
@@ -52,7 +52,7 @@ export function LocaleSwitcher({ variant = "desktop" }: { variant?: "desktop" | 
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button
-          className="focus-ring flex items-center gap-1.5 rounded-full border border-ink/15 bg-white px-3 py-1.5 text-sm font-medium hover:border-ink/25"
+          className="focus-ring flex items-center gap-1.5 rounded-full border border-ink/15 bg-surface px-3 py-1.5 text-sm font-medium hover:border-ink/25"
           aria-label={t("language")}
         >
           <Languages className="h-4 w-4 text-ink/50" /> {locale.toUpperCase()}
@@ -60,7 +60,7 @@ export function LocaleSwitcher({ variant = "desktop" }: { variant?: "desktop" | 
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         {routing.locales.map((l) => (
-          <DropdownMenuItem key={l} onSelect={() => switchTo(l)} className={cn(l === locale && "font-semibold text-teal")}>
+          <DropdownMenuItem key={l} onSelect={() => switchTo(l)} className={cn(l === locale && "font-semibold text-accent-400")}>
             {LOCALE_LABELS[l] ?? l}
           </DropdownMenuItem>
         ))}

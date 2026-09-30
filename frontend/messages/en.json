@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "defaultTitle": "Noma Events — What's happening in Gabon?",
+    "defaultTitle": "BomaEvents — What's happening in Gabon?",
     "description": "Discover, book, and experience the best events in Gabon: concerts, festivals, culture, sports, and more."
   },
   "nav": {
@@ -64,7 +64,28 @@
     "dateTime": "Date & time",
     "venue": "Venue",
     "aboutEvent": "About this event",
-    "refundPolicy": "Tickets are neither refundable nor exchangeable, except if the event is cancelled by the organizer. If cancelled, your tickets are automatically invalidated and you'll be notified."
+    "refundPolicy": "Tickets are neither refundable nor exchangeable, except if the event is cancelled by the organizer. If cancelled, your tickets are automatically invalidated and you'll be notified.",
+    "startsIn": "Starts in",
+    "countdownDays": "Days",
+    "countdownHours": "Hrs",
+    "countdownMinutes": "Min",
+    "countdownSeconds": "Sec",
+    "previousImage": "Previous image",
+    "nextImage": "Next image",
+    "imageOf": "Image {current} of {total}",
+    "hostedBy": "Hosted by",
+    "viewProfile": "View Profile",
+    "getTickets": "Get tickets",
+    "selectTicketHelper": "Select a ticket type to continue.",
+    "selectionSummary": "{count, plural, one {# ticket} other {# tickets}} · {total}",
+    "continue": "Continue",
+    "location": "Location",
+    "viewOnMap": "View on map",
+    "relatedEvents": "Related events",
+    "organizerLabel": "Organizer",
+    "chooseTicketType": "Choose your ticket type to continue",
+    "ticketQuestions": "Questions about tickets? <link>Contact the organizer.</link>",
+    "view": "View"
   },
   "adminNav": {
     "overview": "Overview",
@@ -193,7 +214,7 @@
     "status": "Status",
     "addMemberError": "Unable to add this member",
     "scanStaff": "Scan staff",
-    "scanStaffDescription": "Add members to scan tickets on the day of the event. They must already have a Noma Events account.",
+    "scanStaffDescription": "Add members to scan tickets on the day of the event. They must already have a BomaEvents account.",
     "remove": "Remove",
     "noMemberAssigned": "No member assigned.",
     "memberEmail": "Member email",
@@ -302,7 +323,7 @@
   "organizerOverview": {
     "genericError": "Something went wrong",
     "createProfileTitle": "Create your organizer profile",
-    "createProfileSubtitle": "Give yourself a professional identity on Noma Events before publishing your first event.",
+    "createProfileSubtitle": "Give yourself a professional identity on BomaEvents before publishing your first event.",
     "organizerName": "Organizer name",
     "description": "Description",
     "contactEmail": "Contact email",
@@ -317,26 +338,26 @@
   },
   "categoryPage": {
     "metaTitle": "{name} events",
-    "metaDescription": "Discover all events in the {name} category in Gabon on Noma Events.",
+    "metaDescription": "Discover all events in the {name} category in Gabon on BomaEvents.",
     "refineSearch": "Refine your search →"
   },
   "cityPage": {
     "metaTitle": "Events in {name}",
-    "metaDescription": "Discover all upcoming events in {name}, Gabon, on Noma Events.",
+    "metaDescription": "Discover all upcoming events in {name}, Gabon, on BomaEvents.",
     "headline": "What's happening in {name}?",
     "subheadline": "All upcoming events in {name}.",
     "refineSearch": "Refine your search →"
   },
   "organizerProfile": {
     "notFound": "Organizer not found",
-    "metaDescription": "Discover events organized by {name} on Noma Events.",
+    "metaDescription": "Discover events organized by {name} on BomaEvents.",
     "verified": "Verified",
     "events": "Events",
     "noPublishedEvents": "This organizer hasn't published any events yet."
   },
   "help": {
     "metaTitle": "Help & FAQ",
-    "metaDescription": "Frequently asked questions about buying tickets, refunds, and using Noma Events.",
+    "metaDescription": "Frequently asked questions about buying tickets, refunds, and using BomaEvents.",
     "title": "Help & FAQ",
     "items": [
       {
@@ -357,7 +378,7 @@
         "a": "Your tickets for a cancelled event are automatically invalidated and you'll receive a notification."
       },
       {
-        "q": "How do I become an organizer on Noma Events?",
+        "q": "How do I become an organizer on BomaEvents?",
         "a": "Create an account, then head to the organizer space to create your profile and publish your first event."
       },
       {
@@ -475,7 +496,17 @@
     "organizersToFollow": "Organizers to follow",
     "cultureHeading": "Gabonese culture, music, and heritage in the spotlight",
     "cultureSubheading": "From Afro-urban music to cultural festivals, discover the richness of Gabonese events.",
-    "exploreCulture": "Explore culture"
+    "exploreCulture": "Explore culture",
+    "greeting": "Hi {name}",
+    "greetingGuest": "Hi there",
+    "country": "Gabon",
+    "createEvent": "Create an event",
+    "myTickets": "My tickets",
+    "happening": "Happening",
+    "tomorrow": "Tomorrow",
+    "comingUp": "Coming up",
+    "upcomingEvents": "Upcoming events",
+    "quickFilters": "Quick filters"
   },
   "authShell": {
     "headline": "What's happening in Gabon?",
@@ -483,7 +514,7 @@
     "feature1": "Hundreds of events across Gabon",
     "feature2": "Digital tickets with QR codes, ready instantly",
     "feature3": "Secure payment and responsive support",
-    "copyright": "© {year} Noma Events — Gabon"
+    "copyright": "© {year} BomaEvents — Gabon"
   },
   "auth": {
     "loginTitle": "Log in",
@@ -494,7 +525,7 @@
     "password": "Password",
     "signIn": "Log in",
     "registerTitle": "Create an account",
-    "registerSubtitle": "Join Noma Events to discover and book events.",
+    "registerSubtitle": "Join BomaEvents to discover and book events.",
     "alreadyRegistered": "Already registered?",
     "logIn": "Log in",
     "fullName": "Full name",
@@ -555,6 +586,6 @@
     "supportHeading": "Support",
     "helpFaq": "Help & FAQ",
     "refunds": "Refunds",
-    "copyright": "© {year} Noma Events — Gabon. All rights reserved."
+    "copyright": "© {year} BomaEvents — Gabon. All rights reserved."
   }
 }

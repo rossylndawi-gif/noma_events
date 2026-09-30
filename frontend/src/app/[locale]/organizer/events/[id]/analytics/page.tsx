@@ -52,23 +52,23 @@ function AnalyticsInner() {
               <div className="mt-4 h-64">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={data.salesByTicketType} margin={{ left: -12 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(17,17,17,0.08)" vertical={false} />
-                    <XAxis dataKey="name" tick={{ fontSize: 12, fill: "rgba(17,17,17,0.5)" }} tickLine={false} axisLine={{ stroke: "rgba(17,17,17,0.1)" }} />
-                    <YAxis tick={{ fontSize: 12, fill: "rgba(17,17,17,0.5)" }} tickLine={false} axisLine={false} allowDecimals={false} />
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.08)" vertical={false} />
+                    <XAxis dataKey="name" tick={{ fontSize: 12, fill: "rgba(255,255,255,0.5)" }} tickLine={false} axisLine={{ stroke: "rgba(255,255,255,0.1)" }} />
+                    <YAxis tick={{ fontSize: 12, fill: "rgba(255,255,255,0.5)" }} tickLine={false} axisLine={false} allowDecimals={false} />
                     <Tooltip
                       content={({ active, payload }) => {
                         const row = payload?.[0]?.payload as { name: string; sold: number; grossXaf: number } | undefined;
                         if (!active || !row) return null;
                         return (
-                          <div className="rounded-lg border border-ink/10 bg-white px-3 py-2 text-xs shadow-popover">
+                          <div className="rounded-lg border border-ink/10 bg-surface px-3 py-2 text-xs shadow-popover">
                             <p className="font-semibold text-ink">{row.name}</p>
                             <p className="mt-0.5 text-ink/60">{t("sold", { count: row.sold })} · {formatCurrency(row.grossXaf)}</p>
                           </div>
                         );
                       }}
-                      cursor={{ fill: "rgba(17,17,17,0.04)" }}
+                      cursor={{ fill: "rgba(255,255,255,0.04)" }}
                     />
-                    <Bar dataKey="sold" name={t("ticketsSold")} fill="#167c80" radius={[6, 6, 0, 0]} maxBarSize={48} />
+                    <Bar dataKey="sold" name={t("ticketsSold")} fill="#14b86f" radius={[6, 6, 0, 0]} maxBarSize={48} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -77,7 +77,7 @@ function AnalyticsInner() {
                   <div key={row.ticketTypeId} className="flex items-center justify-between text-sm">
                     <span className="text-ink">{row.name}</span>
                     <span className="text-ink/60">
-                      {t("sold", { count: row.sold })} · <span className="font-medium text-gold-dark">{formatCurrency(row.grossXaf)}</span>
+                      {t("sold", { count: row.sold })} · <span className="font-medium text-accent-400">{formatCurrency(row.grossXaf)}</span>
                     </span>
                   </div>
                 ))}

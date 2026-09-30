@@ -72,7 +72,7 @@ export function QrScanner({ onScan, disabled }: { onScan: (payload: string) => v
         <video ref={videoRef} className="h-full w-full object-cover" muted playsInline />
         <canvas ref={canvasRef} className="hidden" />
         {cameraActive && (
-          <div className="pointer-events-none absolute inset-8 rounded-2xl border-4 border-gold/80" />
+          <div className="pointer-events-none absolute inset-8 rounded-2xl border-4 border-accent-500/80" />
         )}
         {!cameraActive && !cameraError && (
           <div className="absolute inset-0 flex items-center justify-center text-sm text-white/70">

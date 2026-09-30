@@ -24,7 +24,7 @@ export function Pagination({
       <button
         onClick={() => onChange(Math.max(1, page - 1))}
         disabled={page === 1}
-        className="focus-ring rounded-lg px-3 py-2 text-sm text-ink/70 hover:bg-sand disabled:opacity-30"
+        className="focus-ring rounded-full px-3 py-2 text-sm text-ink/70 hover:bg-sand disabled:opacity-30"
       >
         {t("previous")}
       </button>
@@ -35,7 +35,7 @@ export function Pagination({
             onClick={() => onChange(p)}
             className={cn(
               "focus-ring h-9 w-9 rounded-lg text-sm font-medium",
-              p === page ? "bg-ink text-white" : "text-ink/70 hover:bg-sand",
+              p === page ? "bg-accent-500 font-semibold text-accent-ink" : "text-ink/70 hover:bg-sand",
             )}
           >
             {p}
@@ -45,7 +45,7 @@ export function Pagination({
       <button
         onClick={() => onChange(Math.min(totalPages, page + 1))}
         disabled={page === totalPages}
-        className="focus-ring rounded-lg px-3 py-2 text-sm text-ink/70 hover:bg-sand disabled:opacity-30"
+        className="focus-ring rounded-full px-3 py-2 text-sm text-ink/70 hover:bg-sand disabled:opacity-30"
       >
         {t("next")}
       </button>

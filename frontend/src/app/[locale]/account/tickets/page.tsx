@@ -32,7 +32,7 @@ function TicketsList() {
       <EmptyState
         title={t("noTicketsYet")}
         action={
-          <Link href="/events" className="focus-ring rounded-lg bg-ink px-4 py-2 text-sm font-medium text-white">
+          <Link href="/events" className="focus-ring btn-accent rounded-full bg-accent-500 px-4 py-2 text-sm font-semibold text-accent-ink">
             {t("discoverEvents")}
           </Link>
         }
@@ -46,7 +46,7 @@ function TicketsList() {
         <Link
           key={ticket.id}
           href={`/tickets/${ticket.id}`}
-          className="focus-ring flex overflow-hidden rounded-card border border-ink/10 bg-white shadow-card"
+          className="focus-ring flex overflow-hidden rounded-card border border-ink/10 bg-surface shadow-card"
         >
           <div className="relative w-28 shrink-0 bg-sand">
             {ticket.event.coverImage && (

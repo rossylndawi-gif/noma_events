@@ -49,7 +49,7 @@ export default function AccountPage() {
             <Label htmlFor="phone">{t("phone")}</Label>
             <Input id="phone" value={phone} onChange={(e) => setPhone(e.target.value)} />
           </div>
-          {message && <p className="text-sm text-teal">{message}</p>}
+          {message && <p className="text-sm text-accent-400">{message}</p>}
           <Button loading={saving} onClick={handleSave}>
             {t("save")}
           </Button>

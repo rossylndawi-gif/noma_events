@@ -67,7 +67,7 @@ function OrganizersList() {
     <div className="space-y-3">
       {error && <p className="text-sm text-danger">{error}</p>}
       {data.map((org) => (
-        <div key={org.id} className="flex flex-col gap-3 rounded-card border border-ink/10 bg-white p-4 shadow-card sm:flex-row sm:items-center sm:justify-between">
+        <div key={org.id} className="flex flex-col gap-3 rounded-card border border-ink/10 bg-surface p-4 shadow-card sm:flex-row sm:items-center sm:justify-between">
           <div>
             <div className="flex items-center gap-2">
               <p className="font-semibold text-ink">{org.name}</p>

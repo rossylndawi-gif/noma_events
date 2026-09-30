@@ -1,33 +1,73 @@
 @import "tailwindcss";
 
+/* BomaEvents design system — dark theme, Boma Green accent.
+   Legacy utility names are remapped so every page inherits the dark theme:
+   `ink` = foreground (white), `ivory` = page background (black), `sand` = raised
+   neutral surface. The old gold/teal palette is gone; use `accent-*`. */
 @theme {
-  --font-display: "Poppins", system-ui, sans-serif;
+  --font-display: "Archivo", system-ui, sans-serif;
   --font-sans: "Inter", system-ui, sans-serif;
 
-  --color-ink: #111111;
-  --color-gold: #d9a441;
-  --color-gold-light: #e6bd6c;
-  --color-gold-dark: #b8862f;
-  --color-teal: #167c80;
-  --color-teal-light: #1f9b9f;
-  --color-teal-dark: #0f5b5e;
-  --color-ivory: #f7f2e8;
-  --color-sand: #e7ddcb;
+  /* Core neutrals */
+  --color-ink: #ffffff;
+  --color-ivory: #000000;
+  --color-sand: #1c1c1c;
+  --color-muted: #a3a3a3;
+  --color-disabled: #868686;
+  --color-footer: #0c0c0c;
+  --color-surface: #100f0f; /* cards */
+  --color-band: #1d1d1d; /* inset bands, tooltips, toasts */
+  --color-field: #0e0e0e; /* inputs, chips */
+  --color-icon-btn: #111111;
+  --color-line: #1a1a1a;
+  --color-line-card: #282727;
+  --color-line-row: #262626;
+  --color-line-chip: #212121;
+  --color-line-icon: #242424;
+  --color-line-header: #181818;
+  --color-map: #242f3e;
 
-  /* Semantic status colors — the single source of truth for success/warning/danger
-     across Badge, form errors, buttons, and the scanner result states. */
-  --color-success: #047857;
-  --color-success-soft: #d1fae5;
-  --color-warning: #92400e;
-  --color-warning-soft: #fef3c7;
-  --color-danger: #dc2626;
-  --color-danger-dark: #b91c1c;
-  --color-danger-soft: #fee2e2;
+  /* Accent — Boma Green. To switch to Boma Yellow, swap this block only:
+     700 #7A5B00 · 600 #D9AE07 · 500 #F2C10D · 400 #FFD84D · grad-end #FFE27A
+     ink #1A1400 · tint #3A2E06 · glow rgba(242,193,13,.28) · halo rgba(242,193,13,.20) */
+  --color-accent-700: #0b5a3a;
+  --color-accent-600: #0e9f63;
+  --color-accent-500: #14b86f;
+  --color-accent-400: #2fd98a;
+  --color-accent-grad-end: #66e0a0;
+  --color-accent-ink: #04180e; /* text/icons on accent fills — never white */
+  --color-accent-tint: #0e3a24;
+  --color-accent-glow: rgba(20, 184, 111, 0.28);
+  --color-accent-halo: rgba(20, 184, 111, 0.2);
 
-  --radius-card: 1rem;
-  --shadow-card: 0 4px 24px -8px rgba(17, 17, 17, 0.16);
+  /* Status colors, tuned for a black background */
+  --color-success: #34d399;
+  --color-success-soft: rgba(52, 211, 153, 0.14);
+  --color-warning: #fbbf24;
+  --color-warning-soft: rgba(251, 191, 36, 0.14);
+  --color-danger: #ef4444;
+  --color-danger-dark: #dc2626;
+  --color-danger-soft: rgba(239, 68, 68, 0.14);
+
+  --radius-card: 24px;
+  --radius-box: 12px;
+  --radius-row: 8px;
+  --radius-map: 20px;
+
+  --shadow-card: none;
+  --shadow-accent: 0 6px 20px var(--color-accent-glow);
   /* Elevated surfaces that float above content: dropdowns, popovers, modals, toasts. */
-  --shadow-popover: 0 16px 48px -12px rgba(17, 17, 17, 0.28), 0 4px 16px -4px rgba(17, 17, 17, 0.12);
+  --shadow-popover: 0 16px 48px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px #242424;
+
+  --ease-brand: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+:root {
+  color-scheme: dark;
+  --grad-accent: linear-gradient(90deg, var(--color-accent-500) 0%, var(--color-accent-grad-end) 100%);
+  --t-fast: 140ms;
+  --t-base: 200ms;
+  --t-slow: 320ms;
 }
 
 html {
@@ -35,17 +75,32 @@ html {
 }
 
 body {
-  background-color: #f7f2e8;
-  color: #111111;
+  background-color: #000000;
+  color: #ffffff;
 }
 
 ::selection {
-  background-color: #d9a441;
-  color: #111111;
+  background-color: var(--color-accent-500);
+  color: var(--color-accent-ink);
+}
+
+/* Display type: Archivo expanded */
+.font-display {
+  font-stretch: 125%;
+  letter-spacing: -0.01em;
 }
 
 .focus-ring {
-  @apply outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2 focus-visible:ring-offset-ivory;
+  @apply outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-400;
+}
+
+:where(button, a, [role="button"]):focus-visible {
+  outline: 2px solid var(--color-accent-400);
+  outline-offset: 2px;
+}
+
+:where(button:not(:disabled), a, [role="button"]):active {
+  transform: scale(0.98);
 }
 
 .container-page {
@@ -64,6 +119,143 @@ body {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* Gradient accent fill (logo mark, primary pills) */
+.bg-grad-accent {
+  background-image: var(--grad-accent);
+}
+
+/* Gradient accent text (organizer name, "View on map"); .link-grad adds the 1px accent underline */
+.text-grad-accent,
+.link-grad {
+  background-image: var(--grad-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.link-grad {
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent-500);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+/* Shared interactive transitions */
+.btn-accent,
+.btn-secondary,
+.icon-btn,
+.chip,
+.ticket-row,
+.rel-card {
+  transition:
+    background-color var(--t-fast) var(--ease-brand),
+    border-color var(--t-fast) var(--ease-brand),
+    color var(--t-fast) var(--ease-brand),
+    transform var(--t-base) var(--ease-brand),
+    box-shadow var(--t-base) var(--ease-brand),
+    filter var(--t-fast) var(--ease-brand);
+}
+.card-media {
+  overflow: hidden;
+}
+.card-media img {
+  transition: transform var(--t-slow) var(--ease-brand);
+}
+
+/* Hover — desktop pointers only. Colour and border only, plus a 1px lift on accent buttons. */
+@media (hover: hover) and (pointer: fine) {
+  .btn-accent:not(:disabled):hover {
+    filter: brightness(1.06);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-accent);
+  }
+  .btn-secondary:not(:disabled):hover {
+    background-color: #242424;
+    border-color: #2e2e2e;
+  }
+  .icon-btn:hover {
+    background-color: #191919;
+    border-color: #2e2e2e;
+  }
+  .chip:hover {
+    border-color: #2e2e2e;
+  }
+  .ticket-row:not([data-active="true"]):not([data-disabled="true"]):hover {
+    border-color: #3a3a3a;
+    background-color: #141313;
+  }
+  .card-media:hover img,
+  .group:hover .card-media img {
+    transform: scale(1.03);
+  }
+  .rel-card:hover {
+    border-color: #2a2a2a;
+  }
+}
+
+/* Ticket rows get notches on both sides; the selected row adds an accent tint + fine grain */
+.ticket-row {
+  position: relative;
+}
+.ticket-row[data-active="true"] {
+  background-color: var(--color-accent-tint);
+  border-color: var(--color-accent-500);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.ticket-row::before,
+.ticket-row::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  margin-top: -8px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  border: 1px solid;
+  border-color: inherit;
+}
+.ticket-row::before {
+  left: -9px;
+  clip-path: inset(0 0 0 50%);
+}
+.ticket-row::after {
+  right: -9px;
+  clip-path: inset(0 50% 0 0);
+}
+
+/* Countdown dot: 8px accent dot inside a 20px halo */
+.countdown-dot {
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--color-accent-halo);
+}
+.countdown-dot::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent-500);
+}
+
+/* Section reveal — fades up once on first view (see components/Reveal.tsx) */
+@media (scripting: enabled) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity var(--t-slow) var(--ease-brand),
+      transform var(--t-slow) var(--ease-brand);
+  }
+  .reveal[data-visible="true"] {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* Overlay animation primitives for Radix Dialog/DropdownMenu/Tooltip/Toast content,
@@ -135,4 +327,20 @@ body {
 }
 .animate-toast[data-state="closed"] {
   animation: toast-out 150ms ease-in;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
 }

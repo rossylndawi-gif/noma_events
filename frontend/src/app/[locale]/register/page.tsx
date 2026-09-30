@@ -45,7 +45,7 @@ export default function RegisterPage() {
       footer={
         <>
           {t("alreadyRegistered")}{" "}
-          <Link href="/login" className="font-medium text-teal hover:underline">
+          <Link href="/login" className="font-medium text-accent-400 hover:underline">
             {t("logIn")}
           </Link>
         </>

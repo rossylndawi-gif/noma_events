@@ -274,7 +274,7 @@ function NewEventForm() {
             <CardBody className="space-y-4">
               <h2 className="font-semibold text-ink">{t("review")}</h2>
               <p className="text-sm text-ink/60">{t.rich("reviewDescription", { strong: (chunks) => <strong>{chunks}</strong> })}</p>
-              <dl className="grid gap-3 rounded-xl border border-ink/10 bg-ivory/60 p-4 text-sm sm:grid-cols-2">
+              <dl className="grid gap-3 rounded-xl border border-ink/10 bg-field p-4 text-sm sm:grid-cols-2">
                 <ReviewRow label={t("eventTitle")} value={values.title} />
                 <ReviewRow label={t("category")} value={categoryName} />
                 <ReviewRow label={t("city")} value={values.city} />

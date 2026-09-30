@@ -77,7 +77,7 @@ function EventsList({ organizerId }: { organizerId: string }) {
       <EmptyState
         title={t("noEventsYet")}
         action={
-          <Link href="/organizer/events/new" className="focus-ring flex items-center gap-1.5 rounded-lg bg-ink px-4 py-2 text-sm font-medium text-white">
+          <Link href="/organizer/events/new" className="focus-ring flex items-center gap-1.5 btn-accent rounded-full bg-accent-500 px-4 py-2 text-sm font-semibold text-accent-ink">
             <Plus className="h-4 w-4" /> {t("createFirstEvent")}
           </Link>
         }
@@ -89,7 +89,7 @@ function EventsList({ organizerId }: { organizerId: string }) {
     <div className="space-y-3">
       {actionError && <p className="text-sm text-danger">{actionError}</p>}
       {data.map((event) => (
-        <div key={event.id} className="flex flex-col gap-3 rounded-card border border-ink/10 bg-white p-4 shadow-card sm:flex-row sm:items-center sm:justify-between">
+        <div key={event.id} className="flex flex-col gap-3 rounded-card border border-ink/10 bg-surface p-4 shadow-card sm:flex-row sm:items-center sm:justify-between">
           <div>
             <div className="flex items-center gap-2">
               <Link href={`/organizer/events/${event.id}`} className="focus-ring font-semibold text-ink hover:underline">
@@ -139,7 +139,7 @@ function OrganizerEventsPage() {
       <EmptyState
         title={t("createProfileFirst")}
         action={
-          <Link href="/organizer" className="focus-ring rounded-lg bg-ink px-4 py-2 text-sm font-medium text-white">
+          <Link href="/organizer" className="focus-ring btn-accent rounded-full bg-accent-500 px-4 py-2 text-sm font-semibold text-accent-ink">
             {t("createProfile")}
           </Link>
         }

@@ -61,7 +61,7 @@ function AttendeesTable({ eventId }: { eventId: string }) {
             <Td>{a.ticketTypeName}</Td>
             <Td className="font-mono text-xs">{a.displayCode}</Td>
             <Td>
-              <Badge tone={a.status === "USED" ? "success" : a.status === "ACTIVE" ? "teal" : "neutral"}>
+              <Badge tone={a.status === "USED" ? "success" : a.status === "ACTIVE" ? "accent" : "neutral"}>
                 {tStatus.has(a.status) ? tStatus(a.status) : a.status}
               </Badge>
             </Td>

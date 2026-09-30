@@ -87,7 +87,7 @@ function OrganizerOverview() {
     <div>
       <div className="flex items-center gap-3">
         <h1 className="font-display text-2xl font-bold text-ink">{organizer.name}</h1>
-        <Badge tone={organizer.verificationStatus === "VERIFIED" ? "teal" : "warning"}>
+        <Badge tone={organizer.verificationStatus === "VERIFIED" ? "accent" : "warning"}>
           {organizer.verificationStatus === "VERIFIED"
             ? t("verified")
             : organizer.verificationStatus === "REJECTED"
@@ -97,10 +97,10 @@ function OrganizerOverview() {
       </div>
       <p className="mt-1 text-sm text-ink/60">{organizer.description}</p>
       <div className="mt-6 flex gap-3">
-        <Link href="/organizer/events" className="focus-ring rounded-lg bg-ink px-4 py-2 text-sm font-medium text-white">
+        <Link href="/organizer/events" className="focus-ring btn-accent rounded-full bg-accent-500 px-4 py-2 text-sm font-semibold text-accent-ink">
           {t("manageMyEvents")}
         </Link>
-        <Link href={`/organizers/${organizer.slug}`} className="focus-ring rounded-lg border border-ink/15 px-4 py-2 text-sm font-medium hover:bg-white">
+        <Link href={`/organizers/${organizer.slug}`} className="focus-ring rounded-lg border border-ink/15 px-4 py-2 text-sm font-medium hover:bg-surface">
           {t("viewPublicProfile")}
         </Link>
       </div>

@@ -18,13 +18,13 @@ export function TooltipContent({
       <RadixTooltip.Content
         sideOffset={sideOffset}
         className={cn(
-          "animate-content z-50 rounded-lg bg-ink px-2.5 py-1.5 text-xs font-medium text-white shadow-popover",
+          "animate-content z-50 rounded-lg border border-line-icon bg-band px-2.5 py-1.5 text-xs font-medium text-white shadow-popover",
           className,
         )}
         {...props}
       >
         {children}
-        <RadixTooltip.Arrow className="fill-ink" />
+        <RadixTooltip.Arrow className="fill-band" />
       </RadixTooltip.Content>
     </RadixTooltip.Portal>
   );

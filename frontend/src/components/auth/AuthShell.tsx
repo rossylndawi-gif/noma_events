@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 import { CalendarCheck, QrCode, ShieldCheck } from "lucide-react";
+import { BrandMark } from "@/components/BrandMark";
 
 export function AuthShell({
   title,
@@ -22,30 +23,29 @@ export function AuthShell({
 
   return (
     <div className="grid min-h-[calc(100vh-4rem)] lg:grid-cols-2">
-      <div className="relative hidden flex-col justify-between overflow-hidden bg-ink px-12 py-14 text-ivory lg:flex">
-        <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full border border-gold/20" />
-        <div className="absolute -right-8 top-32 h-40 w-40 rounded-full border border-gold/15" />
-        <div className="absolute bottom-0 left-0 h-56 w-56 -translate-x-1/3 translate-y-1/3 rounded-full bg-teal/20 blur-3xl" />
+      <div className="relative hidden flex-col justify-between overflow-hidden border-r border-line bg-surface px-12 py-14 text-ink lg:flex">
+        <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full border border-accent-500/20" />
+        <div className="absolute -right-8 top-32 h-40 w-40 rounded-full border border-accent-500/15" />
+        <div className="absolute bottom-0 left-0 h-56 w-56 -translate-x-1/3 translate-y-1/3 rounded-full bg-accent-500/20 blur-3xl" />
 
-        <div className="relative flex items-center gap-2 font-display text-xl font-bold">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gold text-ink">N</span>
-          Noma<span className="text-gold-light">Events</span>
+        <div className="relative">
+          <BrandMark />
         </div>
 
         <div className="relative max-w-sm">
           <p className="font-display text-3xl font-bold leading-tight">{t("headline")}</p>
-          <p className="mt-3 text-sm text-ivory/60">{t("subheadline")}</p>
+          <p className="mt-3 text-sm text-muted">{t("subheadline")}</p>
           <ul className="mt-8 space-y-4">
             {FEATURES.map((feature) => (
-              <li key={feature.text} className="flex items-start gap-3 text-sm text-ivory/80">
-                <feature.icon className="mt-0.5 h-4 w-4 shrink-0 text-gold-light" />
+              <li key={feature.text} className="flex items-start gap-3 text-sm text-ink/80">
+                <feature.icon className="mt-0.5 h-4 w-4 shrink-0 text-accent-400" />
                 {feature.text}
               </li>
             ))}
           </ul>
         </div>
 
-        <p className="relative text-xs text-ivory/40">{t("copyright", { year: new Date().getFullYear() })}</p>
+        <p className="relative text-xs text-disabled">{t("copyright", { year: new Date().getFullYear() })}</p>
       </div>
 
       <div className="container-page flex items-center justify-center py-12">

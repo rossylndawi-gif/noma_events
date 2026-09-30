@@ -63,7 +63,7 @@ export default async function CityPage({
         )}
       </div>
       <div className="mt-8">
-        <Link href={`/events?city=${encodeURIComponent(name)}`} className="focus-ring text-sm font-medium text-teal hover:underline">
+        <Link href={`/events?city=${encodeURIComponent(name)}`} className="focus-ring text-sm font-medium text-accent-400 hover:underline">
           {t("refineSearch")}
         </Link>
       </div>

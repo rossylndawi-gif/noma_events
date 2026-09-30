@@ -17,7 +17,7 @@ export function FaqAccordion({ items }: { items: { id?: string; q: string; a: st
   }, []);
 
   return (
-    <div ref={containerRef} className="mt-8 divide-y divide-ink/10 rounded-card border border-ink/10 bg-white">
+    <div ref={containerRef} className="mt-8 divide-y divide-ink/10 rounded-card border border-ink/10 bg-surface">
       {items.map((item, i) => (
         <details key={item.q} id={item.id} className="group px-5 py-4 open:pb-5" open={i === 0}>
           <summary className="focus-ring flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-ink marker:content-none">

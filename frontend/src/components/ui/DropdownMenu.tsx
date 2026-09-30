@@ -19,7 +19,7 @@ export function DropdownMenuContent({
         align={align}
         sideOffset={sideOffset}
         className={cn(
-          "animate-content z-50 min-w-[12rem] rounded-xl border border-ink/10 bg-white p-1.5 shadow-popover focus:outline-none",
+          "animate-content z-50 min-w-[12rem] rounded-xl border border-ink/10 bg-surface p-1.5 shadow-popover focus:outline-none",
           className,
         )}
         {...props}
@@ -39,7 +39,7 @@ export function DropdownMenuItem({
   return (
     <RadixDropdown.Item
       className={cn(
-        "flex cursor-pointer items-center gap-2 rounded-lg px-3 py-2 text-sm text-ink outline-none transition-colors data-[highlighted]:bg-ivory",
+        "flex cursor-pointer items-center gap-2 rounded-lg px-3 py-2 text-sm text-ink outline-none transition-colors data-[highlighted]:bg-sand",
         danger && "text-danger data-[highlighted]:bg-danger-soft",
         className,
       )}

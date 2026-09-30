@@ -7,7 +7,15 @@ import { useAuth } from "@/lib/auth-context";
 import { apiPost } from "@/lib/api";
 import { cn } from "@/lib/cn";
 
-export function FavoriteButton({ eventId, initialFavorited = false }: { eventId: string; initialFavorited?: boolean }) {
+export function FavoriteButton({
+  eventId,
+  initialFavorited = false,
+  className,
+}: {
+  eventId: string;
+  initialFavorited?: boolean;
+  className?: string;
+}) {
   const t = useTranslations("eventDetail");
   const { user } = useAuth();
   const router = useRouter();
@@ -35,8 +43,9 @@ export function FavoriteButton({ eventId, initialFavorited = false }: { eventId:
       aria-pressed={favorited}
       aria-label={favorited ? t("removeFavorite") : t("addFavorite")}
       className={cn(
-        "focus-ring flex h-9 w-9 items-center justify-center rounded-full border transition-colors",
-        favorited ? "border-gold bg-gold/15 text-gold-dark" : "border-ink/15 bg-white text-ink/60 hover:text-ink",
+        "focus-ring icon-btn flex h-10 w-10 items-center justify-center rounded-full border",
+        favorited ? "border-accent-500/40 bg-accent-500/10 text-accent-400" : "border-line-icon bg-icon-btn text-ink/80",
+        className,
       )}
     >
       <svg width="18" height="18" viewBox="0 0 24 24" fill={favorited ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2">

@@ -5,7 +5,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { cn } from "@/lib/cn";
 
 const fieldClasses =
-  "w-full rounded-lg border border-ink/15 bg-white px-3.5 py-2.5 text-sm text-ink placeholder:text-ink/40 focus-ring disabled:bg-sand/40";
+  "w-full rounded-box border border-line-row bg-field px-3.5 py-2.5 text-sm text-ink placeholder:text-ink/40 focus-ring disabled:opacity-60";
 
 interface PasswordInputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "type"> {
   error?: string;

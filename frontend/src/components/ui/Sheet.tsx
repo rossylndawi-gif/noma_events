@@ -17,10 +17,10 @@ export function SheetContent({
   const t = useTranslations("common");
   return (
     <RadixDialog.Portal>
-      <RadixDialog.Overlay className="animate-overlay fixed inset-0 z-50 bg-ink/40" />
+      <RadixDialog.Overlay className="animate-overlay fixed inset-0 z-50 bg-black/70 backdrop-blur-sm" />
       <RadixDialog.Content
         className={cn(
-          "animate-sheet fixed right-0 top-0 z-50 flex h-dvh w-full max-w-xs flex-col overflow-y-auto bg-white shadow-popover focus:outline-none sm:max-w-sm",
+          "animate-sheet fixed right-0 top-0 z-50 flex h-dvh w-full max-w-xs flex-col overflow-y-auto bg-surface shadow-popover focus:outline-none sm:max-w-sm",
           className,
         )}
         {...props}

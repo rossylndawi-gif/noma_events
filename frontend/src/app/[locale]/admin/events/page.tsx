@@ -63,7 +63,7 @@ function EventsList() {
     <div className="space-y-3">
       {error && <p className="text-sm text-danger">{error}</p>}
       {data.map((event) => (
-        <div key={event.id} className="flex flex-col gap-2 rounded-card border border-ink/10 bg-white p-4 shadow-card sm:flex-row sm:items-center sm:justify-between">
+        <div key={event.id} className="flex flex-col gap-2 rounded-card border border-ink/10 bg-surface p-4 shadow-card sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="font-semibold text-ink">{event.title}</p>
             <p className="text-xs text-ink/50">

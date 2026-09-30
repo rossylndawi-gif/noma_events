@@ -176,7 +176,7 @@ function CheckoutInner() {
           </div>
           <div className="mt-3 flex justify-between border-t border-ink/10 pt-3 font-semibold">
             <span>{t("total")}</span>
-            <span className="text-gold-dark">{formatXaf(totalXaf)}</span>
+            <span className="text-accent-400">{formatXaf(totalXaf)}</span>
           </div>
         </CardBody>
       </Card>
@@ -209,7 +209,7 @@ function CheckoutInner() {
 
       {step === "paying" && order && (
         <Card className="mt-4 overflow-hidden">
-          <div className="flex items-center gap-2 bg-gold/15 px-5 py-2.5 text-xs font-semibold uppercase tracking-wide text-gold-dark">
+          <div className="flex items-center gap-2 bg-accent-500/15 px-5 py-2.5 text-xs font-semibold uppercase tracking-wide text-accent-400">
             <FlaskConical className="h-3.5 w-3.5" />
             {t("demoMode")}
           </div>
@@ -242,9 +242,9 @@ function CheckoutInner() {
       )}
 
       {step === "success" && (
-        <Card className="mt-4 border-teal/30 bg-teal/5">
+        <Card className="mt-4 border-accent-500/30 bg-accent-500/5">
           <CardBody className="text-center">
-            <CheckCircle2 className="mx-auto h-10 w-10 text-teal" />
+            <CheckCircle2 className="mx-auto h-10 w-10 text-accent-400" />
             <p className="mt-3 font-display text-xl font-bold text-ink">{t("ticketConfirmed")}</p>
             {order && (
               <p className="mt-1 text-sm text-ink/50">

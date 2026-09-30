@@ -55,7 +55,7 @@ export default async function OrganizerProfilePage({
       </div>
       <div className="container-page -mt-12">
         <div className="flex items-end gap-4">
-          <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-2xl border-4 border-ivory bg-white shadow-card">
+          <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-2xl border-4 border-ivory bg-surface shadow-card">
             {organizer.logoUrl ? (
               <Image src={organizer.logoUrl} alt={organizer.name} width={96} height={96} className="h-full w-full object-cover" />
             ) : (
@@ -65,7 +65,7 @@ export default async function OrganizerProfilePage({
           <div className="pb-2">
             <div className="flex items-center gap-2">
               <h1 className="font-display text-2xl font-bold text-ink">{organizer.name}</h1>
-              {organizer.verificationStatus === "VERIFIED" && <Badge tone="teal">{t("verified")}</Badge>}
+              {organizer.verificationStatus === "VERIFIED" && <Badge tone="accent">{t("verified")}</Badge>}
             </div>
           </div>
         </div>

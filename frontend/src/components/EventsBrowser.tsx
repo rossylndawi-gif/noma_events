@@ -22,6 +22,14 @@ function whenToRange(when: string | null): { dateFrom?: string; dateTo?: string 
     end.setHours(23, 59, 59, 999);
     return { dateFrom: now.toISOString(), dateTo: end.toISOString() };
   }
+  if (when === "tomorrow") {
+    const start = new Date(now);
+    start.setDate(now.getDate() + 1);
+    start.setHours(0, 0, 0, 0);
+    const end = new Date(start);
+    end.setHours(23, 59, 59, 999);
+    return { dateFrom: start.toISOString(), dateTo: end.toISOString() };
+  }
   if (when === "weekend") {
     const day = now.getDay();
     const daysUntilSaturday = (6 - day + 7) % 7;
@@ -97,14 +105,14 @@ export function EventsBrowser() {
 
   return (
     <div className="mt-6">
-      <div className="flex flex-wrap gap-3 rounded-card border border-ink/10 bg-white p-4">
-        <form onSubmit={handleSearchSubmit} className="focus-within:ring-2 focus-within:ring-teal/40 flex w-full items-center gap-2 rounded-lg border border-ink/15 px-3 sm:w-64">
+      <div className="flex flex-wrap gap-3 rounded-card border border-ink/10 bg-surface p-4">
+        <form onSubmit={handleSearchSubmit} className="focus-within:ring-2 focus-within:ring-accent-400/40 flex w-full items-center gap-2 rounded-box border border-line-row bg-field px-3 sm:w-64">
           <Search className="h-4 w-4 shrink-0 text-ink/40" />
           <input
             value={qInput}
             onChange={(e) => setQInput(e.target.value)}
             placeholder={t("searchPlaceholder")}
-            className="w-full py-2.5 text-sm text-ink outline-none placeholder:text-ink/40"
+            className="w-full bg-transparent py-2.5 text-sm text-ink outline-none placeholder:text-ink/40"
           />
           {qInput && (
             <button
@@ -153,7 +161,7 @@ export function EventsBrowser() {
               setQInput("");
               router.replace("/events", { scroll: false });
             }}
-            className="focus-ring ml-auto rounded-lg px-3 py-2 text-sm font-medium text-teal hover:underline"
+            className="focus-ring ml-auto rounded-lg px-3 py-2 text-sm font-medium text-accent-400 hover:underline"
           >
             {t("reset")}
           </button>

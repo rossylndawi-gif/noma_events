@@ -12,8 +12,8 @@ export function Stepper({ steps, activeIndex }: { steps: readonly { label: strin
               <span
                 className={cn(
                   "flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-semibold",
-                  state === "done" && "bg-teal text-white",
-                  state === "active" && "bg-ink text-white",
+                  state === "done" && "bg-accent-500 text-accent-ink",
+                  state === "active" && "bg-ink text-ivory",
                   state === "upcoming" && "bg-ink/8 text-ink/40",
                 )}
               >
@@ -23,7 +23,7 @@ export function Stepper({ steps, activeIndex }: { steps: readonly { label: strin
                 {s.label}
               </span>
             </div>
-            {i < steps.length - 1 && <span className={cn("mx-3 h-px flex-1", state === "done" ? "bg-teal" : "bg-ink/10")} />}
+            {i < steps.length - 1 && <span className={cn("mx-3 h-px flex-1", state === "done" ? "bg-accent-500" : "bg-ink/10")} />}
           </li>
         );
       })}

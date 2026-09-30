@@ -16,10 +16,10 @@ export function DialogContent({
   const t = useTranslations("common");
   return (
     <RadixDialog.Portal>
-      <RadixDialog.Overlay className="animate-overlay fixed inset-0 z-50 bg-ink/40" />
+      <RadixDialog.Overlay className="animate-overlay fixed inset-0 z-50 bg-black/70 backdrop-blur-sm" />
       <RadixDialog.Content
         className={cn(
-          "animate-content fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-card bg-white p-6 shadow-popover focus:outline-none",
+          "animate-content fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-card bg-surface p-6 shadow-popover focus:outline-none",
           className,
         )}
         {...props}

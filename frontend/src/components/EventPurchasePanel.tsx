@@ -2,12 +2,15 @@
 
 import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
-import { useRouter } from "@/i18n/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 import { Minus, Plus } from "lucide-react";
 import type { EventDTO } from "@/types";
 import { formatXaf } from "@/lib/format";
 import { Button } from "@/components/ui/Button";
 import { Card, CardBody } from "@/components/ui/Card";
+
+const stepperClass =
+  "focus-ring flex h-9 w-9 items-center justify-center rounded-full bg-accent-500 text-accent-ink transition-colors hover:bg-accent-400 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-accent-500";
 
 export function EventPurchasePanel({ event }: { event: EventDTO }) {
   const t = useTranslations("eventDetail");
@@ -42,7 +45,7 @@ export function EventPurchasePanel({ event }: { event: EventDTO }) {
       <Card>
         <CardBody className="text-center">
           <p className="font-semibold text-danger">{t("eventCancelled")}</p>
-          <p className="mt-1 text-sm text-ink/60">{t("ticketsNoLongerValid")}</p>
+          <p className="mt-1 text-sm text-muted">{t("ticketsNoLongerValid")}</p>
         </CardBody>
       </Card>
     );
@@ -51,7 +54,7 @@ export function EventPurchasePanel({ event }: { event: EventDTO }) {
   if (event.status === "COMPLETED") {
     return (
       <Card>
-        <CardBody className="text-center text-ink/60">{t("eventEnded")}</CardBody>
+        <CardBody className="text-center text-muted">{t("eventEnded")}</CardBody>
       </Card>
     );
   }
@@ -59,57 +62,105 @@ export function EventPurchasePanel({ event }: { event: EventDTO }) {
   if (ticketTypes.length === 0) {
     return (
       <Card>
-        <CardBody className="text-center text-ink/60">{t("ticketsNotAvailableYet")}</CardBody>
+        <CardBody className="text-center text-muted">{t("ticketsNotAvailableYet")}</CardBody>
       </Card>
     );
   }
 
   return (
-    <Card>
-      <CardBody>
-        <h2 className="font-display text-lg font-semibold text-ink">{t("tickets")}</h2>
-        <div className="mt-4 space-y-3">
-          {ticketTypes.map((tt) => (
-            <div key={tt.id} className="flex items-center justify-between gap-3 rounded-xl border border-ink/10 p-3">
-              <div>
-                <p className="text-sm font-medium text-ink">{tt.name}</p>
-                <p className="text-sm font-semibold text-gold-dark">{formatXaf(tt.priceXaf)}</p>
-                <p className="text-xs text-ink/50">{tt.remaining > 0 ? t("remaining", { count: tt.remaining }) : t("soldOut")}</p>
-              </div>
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => setQty(tt.id, (quantities[tt.id] ?? 0) - 1, tt.remaining)}
-                  disabled={tt.remaining === 0}
-                  className="focus-ring flex h-8 w-8 items-center justify-center rounded-lg border border-ink/15 text-ink hover:bg-ink/5 disabled:opacity-30"
-                  aria-label={t("removeTicket")}
-                >
-                  <Minus className="h-3.5 w-3.5" />
-                </button>
-                <span className="w-6 text-center text-sm font-medium">{quantities[tt.id] ?? 0}</span>
-                <button
-                  type="button"
-                  onClick={() => setQty(tt.id, (quantities[tt.id] ?? 0) + 1, tt.remaining)}
-                  disabled={tt.remaining === 0}
-                  className="focus-ring flex h-8 w-8 items-center justify-center rounded-lg border border-ink/15 text-ink hover:bg-ink/5 disabled:opacity-30"
-                  aria-label={t("addTicket")}
-                >
-                  <Plus className="h-3.5 w-3.5" />
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
+    <Card className="p-1">
+      <div className="rounded-[20px_20px_0_0] bg-band px-5 py-4">
+        <h2 className="font-display text-xl font-extrabold text-ink">{t("getTickets")}</h2>
+      </div>
 
-        <div className="mt-4 flex items-center justify-between border-t border-ink/10 pt-4 text-sm">
-          <span className="text-ink/60">{t("total")}</span>
-          <span className="font-display text-lg font-bold text-ink">{formatXaf(totalXaf)}</span>
-        </div>
+      <div className="px-4 pb-4 pt-5">
+        <p className="text-[15px] text-ink/90">{t("chooseTicketType")}</p>
 
-        <Button className="mt-4 w-full" size="lg" disabled={!canPurchase || totalQty === 0} onClick={handleCheckout}>
-          {t("viewTickets")}
+        <ul className="mt-4 space-y-3">
+          {ticketTypes.map((tt) => {
+            const qty = quantities[tt.id] ?? 0;
+            const soldOut = tt.remaining === 0;
+            const max = Math.min(tt.remaining, 20);
+            const info = (
+              <span className="min-w-0 text-left">
+                <span className={`block text-base font-semibold ${soldOut ? "text-ink/40" : "text-ink"}`}>{tt.name}</span>
+                <span className={`block text-[15px] ${soldOut ? "text-ink/40" : "text-ink/80"}`}>
+                  {soldOut ? `${formatXaf(tt.priceXaf)} · ${t("soldOut")}` : formatXaf(tt.priceXaf)}
+                </span>
+              </span>
+            );
+
+            if (qty === 0) {
+              // Unselected row: the whole row is one tap target that selects a first ticket.
+              return (
+                <li key={tt.id}>
+                  <button
+                    type="button"
+                    disabled={soldOut}
+                    data-disabled={soldOut}
+                    onClick={() => setQty(tt.id, 1, tt.remaining)}
+                    aria-label={soldOut ? undefined : `${tt.name}, ${formatXaf(tt.priceXaf)} — ${t("addTicket")}`}
+                    className="ticket-row focus-ring flex min-h-[64px] w-full items-center justify-between gap-3 rounded-row border border-line-row bg-transparent px-6 py-3 disabled:cursor-not-allowed"
+                  >
+                    {info}
+                    {!soldOut && (
+                      <span className="shrink-0 text-xs text-muted">{t("remaining", { count: tt.remaining })}</span>
+                    )}
+                  </button>
+                </li>
+              );
+            }
+
+            return (
+              <li
+                key={tt.id}
+                data-active="true"
+                className="ticket-row flex min-h-[64px] items-center justify-between gap-3 rounded-row border px-6 py-3"
+              >
+                {info}
+                <div className="flex shrink-0 items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setQty(tt.id, qty - 1, tt.remaining)}
+                    className={stepperClass}
+                    aria-label={t("removeTicket")}
+                  >
+                    <Minus className="h-4 w-4" strokeWidth={2.5} />
+                  </button>
+                  <span className="w-6 text-center text-lg font-semibold tabular-nums text-ink" aria-live="polite">
+                    {qty}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setQty(tt.id, qty + 1, tt.remaining)}
+                    // The row just replaced the tapped button; keep keyboard focus on it.
+                    autoFocus
+                    disabled={qty >= max}
+                    className={stepperClass}
+                    aria-label={t("addTicket")}
+                  >
+                    <Plus className="h-4 w-4" strokeWidth={2.5} />
+                  </button>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+
+        <p className="mt-4 text-[15px] text-ink/90">
+          {t.rich("ticketQuestions", {
+            link: (chunks) => (
+              <Link href={`/organizers/${event.organizer.slug}`} className="underline underline-offset-2 hover:text-accent-400">
+                {chunks}
+              </Link>
+            ),
+          })}
+        </p>
+
+        <Button className="mt-4 h-12 w-full text-base" disabled={!canPurchase || totalQty === 0} onClick={handleCheckout}>
+          {totalQty > 0 ? `${t("continue")} · ${formatXaf(totalXaf)}` : t("continue")}
         </Button>
-      </CardBody>
+      </div>
     </Card>
   );
 }

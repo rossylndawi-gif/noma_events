@@ -15,7 +15,7 @@ export function OrganizerNav() {
   ];
 
   return (
-    <div className="border-b border-ink/10 bg-white">
+    <div className="border-b border-ink/10 bg-surface">
       <div className="container-page flex items-center gap-1 overflow-x-auto">
         {LINKS.map((link) => {
           const active = pathname === link.href;
@@ -25,7 +25,7 @@ export function OrganizerNav() {
               href={link.href}
               className={cn(
                 "focus-ring flex items-center gap-1.5 whitespace-nowrap border-b-2 px-4 py-3 text-sm font-medium",
-                active ? "border-teal text-teal" : "border-transparent text-ink/60 hover:text-ink",
+                active ? "border-accent-500 text-accent-400" : "border-transparent text-ink/60 hover:text-ink",
               )}
             >
               <link.icon className="h-4 w-4" /> {link.label}
@@ -34,7 +34,7 @@ export function OrganizerNav() {
         })}
         <Link
           href="/organizer/events/new"
-          className="focus-ring ml-auto flex shrink-0 items-center gap-1.5 whitespace-nowrap self-center rounded-lg bg-ink px-4 py-2 text-sm font-medium text-white hover:bg-black"
+          className="focus-ring ml-auto flex shrink-0 items-center gap-1.5 whitespace-nowrap self-center btn-accent rounded-full bg-accent-500 px-4 py-2 text-sm font-semibold text-accent-ink"
         >
           <Plus className="h-4 w-4" /> {t("createEvent")}
         </Link>
@@ -62,7 +62,7 @@ export function EventTabs({ eventId }: { eventId: string }) {
             href={tab.href}
             className={cn(
               "focus-ring flex items-center gap-1.5 whitespace-nowrap border-b-2 px-3 py-2.5 text-sm font-medium",
-              active ? "border-teal text-teal" : "border-transparent text-ink/60 hover:text-ink",
+              active ? "border-accent-500 text-accent-400" : "border-transparent text-ink/60 hover:text-ink",
             )}
           >
             <tab.icon className="h-3.5 w-3.5" /> {tab.label}

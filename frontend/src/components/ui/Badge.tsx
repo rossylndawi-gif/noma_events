@@ -1,11 +1,10 @@
 import { cn } from "@/lib/cn";
 
-type Tone = "neutral" | "gold" | "teal" | "success" | "warning" | "danger";
+type Tone = "neutral" | "accent" | "success" | "warning" | "danger";
 
 const toneClasses: Record<Tone, string> = {
-  neutral: "bg-sand text-ink/70",
-  gold: "bg-gold/15 text-gold-dark",
-  teal: "bg-teal/10 text-teal-dark",
+  neutral: "border border-line-chip bg-field text-ink/80",
+  accent: "border border-accent-500/30 bg-accent-500/10 text-accent-400",
   success: "bg-success-soft text-success",
   warning: "bg-warning-soft text-warning",
   danger: "bg-danger-soft text-danger",

@@ -33,7 +33,7 @@ function TicketDetail() {
 
   return (
     <div className="container-page flex justify-center py-10">
-      <div className="w-full max-w-sm overflow-hidden rounded-card border border-ink/10 bg-white shadow-card">
+      <div className="w-full max-w-sm overflow-hidden rounded-card border border-ink/10 bg-surface shadow-card">
         <div className="relative h-40 w-full bg-sand">
           {data.event.coverImage && <Image src={data.event.coverImage} alt={data.event.title} fill className="object-cover" />}
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />

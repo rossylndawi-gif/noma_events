@@ -2,7 +2,7 @@ import { forwardRef, type InputHTMLAttributes, type TextareaHTMLAttributes, type
 import { cn } from "@/lib/cn";
 
 const fieldClasses =
-  "w-full rounded-lg border border-ink/15 bg-white px-3.5 py-2.5 text-sm text-ink placeholder:text-ink/40 focus-ring disabled:bg-sand/40";
+  "w-full rounded-box border border-line-row bg-field px-3.5 py-2.5 text-sm text-ink placeholder:text-ink/40 focus-ring disabled:opacity-60";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: string;
@@ -45,7 +45,7 @@ export function Label({ children, htmlFor, required }: { children: React.ReactNo
   return (
     <label htmlFor={htmlFor} className="mb-1.5 block text-sm font-medium text-ink">
       {children}
-      {required && <span className="text-teal"> *</span>}
+      {required && <span className="text-accent-400"> *</span>}
     </label>
   );
 }

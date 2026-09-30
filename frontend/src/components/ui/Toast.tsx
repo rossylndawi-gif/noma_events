@@ -43,13 +43,13 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
         {toasts.map((toast) => (
           <RadixToast.Root
             key={toast.id}
-            className="animate-toast flex items-start gap-3 rounded-xl bg-ink px-4 py-3.5 text-white shadow-popover data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)]"
+            className="animate-toast flex items-start gap-3 rounded-xl border border-line-icon bg-band px-4 py-3.5 text-white shadow-popover data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)]"
             onOpenChange={(open) => !open && remove(toast.id)}
           >
             {toast.tone === "success" ? (
-              <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-teal-light" />
+              <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-accent-400" />
             ) : (
-              <XCircle className="mt-0.5 h-5 w-5 shrink-0 text-danger-soft" />
+              <XCircle className="mt-0.5 h-5 w-5 shrink-0 text-danger" />
             )}
             <div className="flex-1">
               <RadixToast.Title className="text-sm font-medium">{toast.title}</RadixToast.Title>

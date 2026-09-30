@@ -4,8 +4,8 @@ import { cn } from "@/lib/cn";
 type HeadingLevel = 1 | 2 | 3 | 4;
 
 const headingClasses: Record<HeadingLevel, string> = {
-  1: "font-display text-2xl font-bold text-ink sm:text-3xl",
-  2: "font-display text-xl font-semibold text-ink sm:text-2xl",
+  1: "font-display text-2xl font-extrabold text-ink sm:text-3xl",
+  2: "font-display text-xl font-bold text-ink sm:text-2xl",
   3: "text-lg font-semibold text-ink",
   4: "text-base font-semibold text-ink",
 };

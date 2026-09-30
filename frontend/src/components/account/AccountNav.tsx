@@ -25,7 +25,7 @@ export function AccountNav() {
             href={link.href}
             className={cn(
               "focus-ring -mb-px flex items-center gap-1.5 whitespace-nowrap border-b-2 px-3.5 py-3 text-sm font-medium",
-              active ? "border-teal text-ink" : "border-transparent text-ink/55 hover:text-ink",
+              active ? "border-accent-500 text-ink" : "border-transparent text-ink/55 hover:text-ink",
             )}
           >
             <link.icon className="h-4 w-4" /> {link.label}

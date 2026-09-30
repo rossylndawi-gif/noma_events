@@ -10,18 +10,20 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   loading?: boolean;
 }
 
+// Labels on accent fills use accent-ink, never white (contrast rule).
 const variantClasses: Record<Variant, string> = {
-  primary: "bg-ink text-white hover:bg-black disabled:bg-ink/50",
-  secondary: "bg-gold text-ink hover:bg-gold-dark disabled:bg-gold/50",
-  outline: "border border-ink/20 text-ink bg-transparent hover:bg-ink/5 disabled:opacity-50",
-  ghost: "bg-transparent text-ink hover:bg-ink/5 disabled:opacity-50",
-  danger: "bg-danger text-white hover:bg-danger-dark disabled:bg-danger/50",
+  primary: "btn-accent bg-accent-500 font-semibold text-accent-ink disabled:opacity-40",
+  secondary: "btn-secondary border border-line-icon bg-sand text-ink disabled:opacity-40",
+  outline: "btn-secondary border border-line-icon text-ink bg-transparent disabled:opacity-40",
+  ghost: "bg-transparent text-ink hover:bg-white/5 disabled:opacity-40",
+  danger: "bg-danger text-white hover:bg-danger-dark disabled:opacity-40",
 };
 
+// Fixed heights, always pill-shaped.
 const sizeClasses: Record<Size, string> = {
-  sm: "text-sm px-3 py-1.5 rounded-lg gap-1.5",
-  md: "text-sm px-4 py-2.5 rounded-xl gap-2",
-  lg: "text-base px-6 py-3.5 rounded-xl gap-2",
+  sm: "h-9 text-sm px-4 gap-1.5",
+  md: "h-10 text-sm px-5 gap-2",
+  lg: "h-12 text-base px-6 gap-2",
 };
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -30,7 +32,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         className={cn(
-          "focus-ring inline-flex items-center justify-center font-medium transition-colors disabled:cursor-not-allowed",
+          "focus-ring inline-flex items-center justify-center rounded-full font-medium transition-colors disabled:cursor-not-allowed",
           variantClasses[variant],
           sizeClasses[size],
           className,
@@ -47,3 +49,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   },
 );
 Button.displayName = "Button";
+
+/** Class string for links styled as the primary accent pill button. */
+export const accentPillClasses =
+  "focus-ring btn-accent inline-flex h-10 items-center justify-center gap-1.5 rounded-full bg-accent-500 px-5 text-sm font-semibold text-accent-ink";

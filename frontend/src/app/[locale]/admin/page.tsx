@@ -18,12 +18,11 @@ function StatCard({
   label: string;
   value: string;
   icon: React.ComponentType<{ className?: string }>;
-  tone?: "ink" | "teal" | "gold";
+  tone?: "ink" | "accent";
 }) {
   const toneClasses = {
     ink: "bg-ink/8 text-ink/70",
-    teal: "bg-teal/10 text-teal",
-    gold: "bg-gold/15 text-gold-dark",
+    accent: "bg-accent-500/10 text-accent-400",
   }[tone];
   return (
     <Card>
@@ -51,7 +50,7 @@ function RatioBar({ label, current, total }: { label: string; current: number; t
         </span>
       </div>
       <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-ink/8">
-        <div className="h-full rounded-full bg-teal transition-all" style={{ width: `${pct}%` }} />
+        <div className="h-full rounded-full bg-accent-500 transition-all" style={{ width: `${pct}%` }} />
       </div>
     </div>
   );
@@ -76,9 +75,9 @@ export default function AdminPage() {
           <>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               <StatCard label={t("users")} value={String(data.totalUsers)} icon={Users} />
-              <StatCard label={t("organizers")} value={String(data.totalOrganizers)} icon={ShieldCheck} tone="teal" />
-              <StatCard label={t("pendingVerification")} value={String(data.pendingOrganizers)} icon={Clock} tone="gold" />
-              <StatCard label={t("grossSales")} value={formatCurrency(data.grossSalesXaf)} icon={Wallet} tone="gold" />
+              <StatCard label={t("organizers")} value={String(data.totalOrganizers)} icon={ShieldCheck} tone="accent" />
+              <StatCard label={t("pendingVerification")} value={String(data.pendingOrganizers)} icon={Clock} tone="accent" />
+              <StatCard label={t("grossSales")} value={formatCurrency(data.grossSalesXaf)} icon={Wallet} tone="accent" />
             </div>
 
             <Card className="mt-6">

@@ -36,7 +36,7 @@ function OrdersList() {
         <Link
           key={order.id}
           href={`/events/${order.event.slug}`}
-          className="focus-ring flex flex-col gap-1 rounded-card border border-ink/10 bg-white p-4 shadow-card sm:flex-row sm:items-center sm:justify-between"
+          className="focus-ring flex flex-col gap-1 rounded-card border border-ink/10 bg-surface p-4 shadow-card sm:flex-row sm:items-center sm:justify-between"
         >
           <div>
             <p className="text-sm font-semibold text-ink">{order.event.title}</p>
