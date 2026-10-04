@@ -37,9 +37,10 @@ export function createApp(): Express {
   );
   // No cookies/credentials involved — auth is a Bearer token the client attaches
   // itself, so a plain origin allow-list (no `credentials: true`) is sufficient.
+  // WEB_URL may list several comma-separated origins (e.g. localhost and a LAN IP).
   app.use(
     cors({
-      origin: env.WEB_URL,
+      origin: env.WEB_URL.split(",").map((o) => o.trim()).filter(Boolean),
     }),
   );
   app.use(express.json({ limit: "1mb" }));

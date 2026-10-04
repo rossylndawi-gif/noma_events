@@ -39,7 +39,10 @@ const envSchema = z.object({
   JWT_ACCESS_SECRET: z.string().min(16, "JWT_ACCESS_SECRET must be at least 16 characters"),
   JWT_REFRESH_SECRET: z.string().min(16, "JWT_REFRESH_SECRET must be at least 16 characters"),
 
-  STORAGE_PROVIDER: z.enum(["local", "cloudinary"]).default("local"),
+  STORAGE_PROVIDER: z.enum(["local", "cloudinary", "vercel-blob"]).default("local"),
+  // Read by @vercel/blob from process.env; listed here so a missing token is
+  // visible in the env schema. Vercel adds it when a Blob store is connected.
+  BLOB_READ_WRITE_TOKEN: z.string().optional(),
   STORAGE_CLOUD_NAME: z.string().optional(),
   STORAGE_API_KEY: z.string().optional(),
   STORAGE_API_SECRET: z.string().optional(),
