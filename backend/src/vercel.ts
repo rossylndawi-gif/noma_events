@@ -1,12 +1,13 @@
-import type { IncomingMessage, ServerResponse } from "node:http";
+import express from "express";
 import { createApp } from "./app";
 import { logger } from "./config/logger";
 import { connectDatabase } from "./database/connection";
 import { runSweeps, SWEEP_INTERVAL_MS } from "./jobs/sweeps";
 
-// Vercel serverless entry point. Module state survives between requests on a
-// warm instance, so the app and the MongoDB connection are created once and
-// reused rather than rebuilt per request.
+// Vercel entry point (the "backend" service's entrypoint in /vercel.json).
+// Module state survives between requests on a warm instance, so the app and
+// the MongoDB connection are created once and reused rather than rebuilt per
+// request.
 const app = createApp();
 
 let dbReady: Promise<void> | null = null;
@@ -32,16 +33,22 @@ async function maybeRunSweeps(): Promise<void> {
   await runSweeps();
 }
 
-export default async function handler(req: IncomingMessage, res: ServerResponse): Promise<void> {
+// Vercel's Express preset expects the entrypoint to import express and
+// default-export an app, so the DB/sweep guard is an outer app that mounts
+// the real one.
+const vercelApp = express();
+
+vercelApp.use(async (_req, res, next) => {
   try {
     await ensureDatabase();
     await maybeRunSweeps();
   } catch (err) {
     logger.error({ err }, "Database connection failed");
-    res.statusCode = 503;
-    res.setHeader("content-type", "application/json; charset=utf-8");
-    res.end(JSON.stringify({ success: false, error: { code: "DB_UNAVAILABLE", message: "Database unavailable" } }));
+    res.status(503).json({ success: false, error: { code: "DB_UNAVAILABLE", message: "Database unavailable" } });
     return;
   }
-  app(req as Parameters<typeof app>[0], res as Parameters<typeof app>[1]);
-}
+  next();
+});
+vercelApp.use(app);
+
+export default vercelApp;

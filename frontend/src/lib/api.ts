@@ -1,7 +1,22 @@
 import type { ApiError, ApiSuccess, PaginationMeta } from "@/types";
 import { getAccessToken, getRefreshToken, setTokens, clearTokens } from "./tokenStorage";
 
-export const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000/api/v1";
+const API_PREFIX = "/api/v1";
+
+/**
+ * Base URL for API calls.
+ * - Local dev: NEXT_PUBLIC_API_URL (the separately running backend).
+ * - On Vercel the backend service is mounted at /api on the same domain, so
+ *   the browser uses the relative prefix, while server-side code (Server
+ *   Components, sitemap) needs an absolute URL and reads BACKEND_URL, which
+ *   the service binding in /vercel.json injects at runtime.
+ */
+function apiBase(): string {
+  if (process.env.NEXT_PUBLIC_API_URL) return process.env.NEXT_PUBLIC_API_URL;
+  if (typeof window !== "undefined") return API_PREFIX;
+  if (process.env.BACKEND_URL) return `${process.env.BACKEND_URL.replace(/\/+$/, "")}${API_PREFIX}`;
+  return `http://localhost:4000${API_PREFIX}`;
+}
 
 // This module sits outside the React tree (used from Server Components and
 // plain fetch helpers alike), so it can't call useTranslations(). The locale
@@ -49,7 +64,7 @@ async function refreshAccessToken(): Promise<boolean> {
       const refreshToken = getRefreshToken();
       if (!refreshToken) return false;
       try {
-        const res = await fetch(`${API_BASE}/auth/refresh`, {
+        const res = await fetch(`${apiBase()}/auth/refresh`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ refreshToken }),
@@ -79,7 +94,7 @@ async function rawFetch(path: string, options: FetchOptions): Promise<Response> 
   const accessToken = auth ? getAccessToken() : null;
 
   try {
-    return await fetch(`${API_BASE}${path}`, {
+    return await fetch(`${apiBase()}${path}`, {
       ...rest,
       body,
       headers: {
